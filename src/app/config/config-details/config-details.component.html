@@ -59,7 +59,8 @@
                   <label class="control-label">Minimum Length:</label>
                   <input type="text" formControlName="minLength" class="form-control">
                   <div *ngIf="submitted && f.minLength.errors" class="invalid-feedback" style="display: block;">
-                    <div *ngIf="f.minLength.errors.required">Paramter Name is required</div>
+                    <div *ngIf="f.minLength.errors.required">Minimum Length is required</div>
+                    <div *ngIf="f.minLength.errors.pattern">Minimum Length must be a number</div>
                   </div>
                 </div>
 
@@ -68,7 +69,8 @@
                   <label class="control-label">Maximum Length:</label>
                   <input type="text" formControlName="maxLength" class="form-control" >
                   <div *ngIf="submitted && f.maxLength.errors" class="invalid-feedback" style="display: block;">
-                    <div *ngIf="f.maxLength.errors.required">Paramter Name is required</div>
+                    <div *ngIf="f.maxLength.errors.required">Maximum Length is required</div>
+                    <div *ngIf="f.maxLength.errors.pattern">Maximum Length must be a number</div>
                   </div>
                 </div>
               </div>
@@ -79,7 +81,8 @@
                   <label class="control-label">Capital letter:</label>
                   <input type="text" formControlName="capitalLetter" class="form-control" >
                   <div *ngIf="submitted && f.capitalLetter.errors" class="invalid-feedback" style="display: block;">
-                    <div *ngIf="f.capitalLetter.errors.required">Paramter Name is required</div>
+                    <div *ngIf="f.capitalLetter.errors.required">Capital letter is required</div>
+                    <div *ngIf="f.capitalLetter.errors.pattern">Capital letter must be a number</div>
                   </div>
                 </div>
 
@@ -88,7 +91,8 @@
                   <label class="control-label">Small letter:</label>
                   <input type="text" formControlName="smallLetter" class="form-control" >
                   <div *ngIf="submitted && f.smallLetter.errors" class="invalid-feedback" style="display: block;">
-                    <div *ngIf="f.smallLetter.errors.required">Paramter Name is required</div>
+                    <div *ngIf="f.smallLetter.errors.required">Small letter is required</div>
+                    <div *ngIf="f.smallLetter.errors.pattern">Small letter must be a number</div>
                   </div>
                 </div>
 
@@ -97,7 +101,8 @@
                   <label class="control-label">Number character:</label>
                   <input type="text" formControlName="numbers" class="form-control" >
                   <div *ngIf="submitted && f.numbers.errors" class="invalid-feedback" style="display: block;">
-                    <div *ngIf="f.numbers.errors.required">Paramter Name is required</div>
+                    <div *ngIf="f.numbers.errors.required">Number character is required</div>
+                    <div *ngIf="f.numbers.errors.pattern">Number character must be a number</div>
                   </div>
                 </div>
 
@@ -106,7 +111,8 @@
                   <label class="control-label">Special character:</label>
                   <input type="text" formControlName="specialCharacter" class="form-control" >
                   <div *ngIf="submitted && f.specialCharacter.errors" class="invalid-feedback" style="display: block;">
-                    <div *ngIf="f.specialCharacter.errors.required">Paramter Name is required</div>
+                    <div *ngIf="f.specialCharacter.errors.required">Number character is required</div>
+                    <div *ngIf="f.specialCharacter.errors.pattern">Number character must be a number</div>
                   </div>
                 </div>
               </div>

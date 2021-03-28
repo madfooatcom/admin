@@ -26,12 +26,12 @@ export class ConfigDetailsComponent implements OnInit {
     this.paramterForm = this.formBuilder.group({
       paramter_name: [, Validators.required],
       paramter_type: [, Validators.required],
-      minLength: [],
-      maxLength: [],
-      capitalLetter: [],
-      smallLetter: [],
-      numbers: [],
-      specialCharacter: []
+      minLength: [, [Validators.pattern(/^[0-9]*$/)]],
+      maxLength: [, Validators.pattern(/^(0|[1-9][0-9]*)$/)],
+      capitalLetter: [, Validators.pattern(/^(0|[1-9][0-9]*)$/)],
+      smallLetter: [, Validators.pattern(/^(0|[1-9][0-9]*)$/)],
+      numbers: [, Validators.pattern(/^(0|[1-9][0-9]*)$/)],
+      specialCharacter: [, Validators.pattern(/^(0|[1-9][0-9]*)$/)]
     });
   }
 
@@ -60,7 +60,7 @@ export class ConfigDetailsComponent implements OnInit {
   validating(paramters: string[]) {
     this.paramterForm.reset();
     paramters.forEach(param => {
-      this.paramterForm.controls[param].setValidators([Validators.required]);
+      this.paramterForm.controls[param].setValidators([Validators.required, Validators.pattern(/^[0-9]*$/)]);
       this.paramterForm.controls[param].updateValueAndValidity();
     });
   }
