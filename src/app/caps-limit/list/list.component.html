@@ -1,0 +1,84 @@
+<div class="row layout-top-spacing">
+
+    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+        <div class="  mb-2 text-right">
+            <svg [routerLink]="['add/']" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-plus-circle btn-add-contact">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="16"></line>
+                <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+        </div>
+        <div class="widget-content widget-content-area br-6">
+            <div class="table-responsive mb-4 mt-2">
+                <table cdk-table [dataSource]="tableDataSource$" id="style-2_wrapper"
+                    class="table style-2 table-hover dataTable no-footer" style="width:100%">
+
+                    <!-- code Column -->
+                    <ng-container cdkColumnDef="code">
+                        <th cdk-header-cell *cdkHeaderCellDef (click)="adjustSort('code')">
+                            ID <span *ngIf="sortKey$.value === 'code'">{{ sortDirection$.value === 'asc' ? '↥' : '↧'
+                                }}</span>
+                        </th>
+                        <td cdk-cell *cdkCellDef="let row"> {{row.code}} </td>
+                        <td cdk-cell *cdkFooterCellDef="let row"> test </td>
+                    </ng-container>
+
+                    <!-- transactionType Column -->
+                    <ng-container cdkColumnDef="transactionType" (click)="adjustSort('transactionType')">
+                        <th cdk-header-cell *cdkHeaderCellDef (click)="adjustSort('transactionType')">
+                            transactionType <span *ngIf="sortKey$.value === 'transactionType'">{{ sortDirection$.value
+                                === 'asc' ? '↥'
+                                : '↧'
+                                }}</span>
+                        </th>
+                        <td cdk-cell *cdkCellDef="let row"> {{row.transactionType}} </td>
+                        <td cdk-cell *cdkFooterCellDef="let row"> test </td>
+                    </ng-container>
+
+
+
+                    <!-- appliedOn Column -->
+                    <ng-container cdkColumnDef="appliedOn">
+                        <th cdk-header-cell *cdkHeaderCellDef (click)="adjustSort('appliedOn')">
+                            appliedOn <span *ngIf="sortKey$.value === 'appliedOn'">{{ sortDirection$.value ===
+                                'asc' ? '↥' : '↧'
+                                }}</span>
+                        </th>
+                        <td cdk-cell *cdkCellDef="let row">
+                            {{row.appliedOn}}
+                        </td>
+                        <td cdk-cell *cdkFooterCellDef="let row"> test </td>
+                    </ng-container>
+
+                    <!-- actions Column -->
+                    <ng-container cdkColumnDef="actions">
+                        <th cdk-header-cell *cdkHeaderCellDef></th>
+                        <td cdk-cell *cdkCellDef="let row">
+                            <button [routerLink]="['details/' + row.code]"
+                                class="btn btn-sm btn-primary mr-2">View</button>
+                            <button [routerLink]="['edit/' + row.code]"
+                                class="btn btn-sm btn-warning mr-2">Edit</button>
+                            <button class="btn btn-sm btn-danger mr-2">Delete</button>
+                        </td>
+                        <td cdk-cell *cdkFooterCellDef="let row"> test </td>
+                    </ng-container>
+
+                    <!-- Header and Row Declarations -->
+                    <tr cdk-header-row *cdkHeaderRowDef="displayedColumns$.value"></tr>
+                    <tr cdk-row *cdkRowDef="let row; columns: displayedColumns$.value"></tr>
+
+                </table>
+
+                <!-- <div class="d-flex justify-content-center">
+                  <div class="">
+                      <ngb-pagination [collectionSize]="tableDataSource$.value.length" [pageSize]="pageSize$.value"
+                          [page]="currentPage$.value" (pageChange)="pageChange($event)">
+                      </ngb-pagination>
+                  </div>
+              </div> -->
+            </div>
+        </div>
+    </div>
+</div>

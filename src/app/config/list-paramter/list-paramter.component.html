@@ -1,0 +1,78 @@
+<div class="item-details">
+  <div class="d-flex justify-content-between mb-2">
+    <label for="">list items:</label>
+
+  </div>
+  <div class="row ">
+    <div class="table-responsive ">
+      <form  [formGroup]="listForm">
+      <table class="table table-hover formTable" style="width:100%">
+        <thead>
+          <th>Key</th>
+          <th>English Value</th>
+          <th>Arabic Value</th>
+          <th>Action</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listItems">
+            <td>
+              {{item.key}}
+            </td>
+            <td>
+              {{item.enValue}}
+            </td>
+            <td>
+              {{item.arValue}}
+            </td>
+                <td class="text-center"><svg (click)="removeItemList(item)" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-trash-2 icon text-danger">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path
+                  d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                </path>
+                <line x1="10" y1="11" x2="10" y2="17"></line>
+                <line x1="14" y1="11" x2="14" y2="17"></line>
+              </svg></td>
+          </tr>
+          <tr>
+  
+              <td>
+                <div class="form-group ">
+                  <input type="text" formControlName="listItemKey" class="form-control" >
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input type="text" formControlName="listItemEnValue" class="form-control"
+                   >
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input type="text" formControlName="listItemArValue" class="form-control"
+                   >
+                </div>
+              </td>
+              <td class="text-center">
+                <div class="icon-container add-icon">
+                  <svg (click)="addListItem()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="feather feather-plus-circle text-primary">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="16"></line>
+                    <line x1="8" y1="12" x2="16" y2="12"></line>
+                  </svg><span class="icon-name"></span>
+                </div>
+              </td>
+         
+          </tr>
+
+        </tbody>
+      </table>
+    </form>
+    </div>
+  </div>
+
+</div>

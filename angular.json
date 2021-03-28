@@ -1,0 +1,172 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "f7ce7f3f-96c8-4c46-ba3a-65b1c778937c"
+  },
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "madfoaatcom-wallet": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/madfoaatcom-wallet",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss",
+              "node_modules/select2/dist/css/select2.min.css",
+              "src/assets/cork/plugins/table/datatable/dt-global_style.css"
+            ],
+            "scripts": [
+              "src/assets/cork/assets/js/libs/jquery-3.1.1.min.js",
+              "src/assets/cork/bootstrap/js/popper.min.js",
+              "src/assets/cork/bootstrap/js/bootstrap.min.js",
+              "src/assets/js/perfectscrollbar.js",
+              "src/assets/cork/assets/js/app.js",
+              "src/assets/js/readyDoc.js",
+              
+              "src/assets/cork/plugins/highlight/highlight.pack.js",
+              "src/assets/cork/assets/js/custom.js",
+              "src/assets/cork/plugins/apex/apexcharts.min.js",
+              "src/assets/cork/assets/js/dashboard/dash_1.js",
+              "src/assets/cork/plugins/table/datatable/datatables.js",
+              "src/assets/js/dataTable.js",
+              "src/assets/cork/assets/js/scrollspyNav.js",
+              "src/assets/cork/plugins/font-icons/feather/feather.min.js",
+              "src/assets/js/featureReplace.js",
+              "node_modules/select2/dist/js/select2.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "700kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "madfoaatcom-wallet:build",
+            "proxyConfig": "src/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "madfoaatcom-wallet:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "madfoaatcom-wallet:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": [
+              "src/assets/cork/assets/js/libs/jquery-3.1.1.min.js",
+              "src/assets/cork/bootstrap/js/popper.min.js",
+              "src/assets/cork/bootstrap/js/bootstrap.min.js",
+              "src/assets/js/perfectscrollbar.js",
+              "src/assets/cork/assets/js/app.js",
+              "src/assets/js/readyDoc.js",
+              
+              "src/assets/cork/plugins/highlight/highlight.pack.js",
+              "src/assets/cork/assets/js/custom.js",
+              "src/assets/cork/plugins/apex/apexcharts.min.js",
+              "src/assets/cork/assets/js/dashboard/dash_1.js",
+              "src/assets/cork/plugins/table/datatable/datatables.js",
+              "src/assets/js/dataTable.js",
+              "src/assets/cork/assets/js/scrollspyNav.js",
+              "src/assets/cork/plugins/font-icons/feather/feather.min.js",
+              "src/assets/js/featureReplace.js"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "madfoaatcom-wallet:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "madfoaatcom-wallet:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "madfoaatcom-wallet"
+}

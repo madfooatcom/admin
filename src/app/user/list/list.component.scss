@@ -1,0 +1,26 @@
+label.searchbar{
+    position: relative;
+}
+label.searchbar svg{
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    width: 20px;
+    color: #d3d3d3;
+}
+::ng-deep .pagination .page-item .page-link {
+    border-radius: 4px !important;
+    padding: 10px 15px;
+  }
+
+  ::ng-deep .pagination .page-item.active .page-link {
+    background: #1b55e2 !important;
+    color: #fff !important;
+  }
+  
+::ng-deep .pagination .page-link {
+    border-top-style: none !important;
+    border-bottom-style: none !important;
+    background-color: #e0e6ed !important;
+    color: black !important;
+  }

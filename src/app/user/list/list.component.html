@@ -1,0 +1,137 @@
+<div class="row layout-top-spacing">
+
+    <div class="col-sm-12 col-md-12">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div id="zero-config_filter" class="dataTables_filter"><label class="searchbar"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-search">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg><input type="text" class="form-control" placeholder="Search..."
+                            (input)="filter($event)" [(ngModel)]="userSearch"></label></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+        <div class="widget-content widget-content-area br-6">
+            <div class="table-responsive mb-4 mt-2">
+                <table cdk-table [dataSource]="tableDataSource$" id="style-2_wrapper"
+                    class="table style-2 table-hover dataTable no-footer" style="width:100%">
+
+                    <!-- ID Column -->
+                    <ng-container cdkColumnDef="id">
+                        <th cdk-header-cell *cdkHeaderCellDef (click)="adjustSort('id')">
+                            ID <span *ngIf="sortKey$.value === 'id'">{{ sortDirection$.value === 'asc' ? '↥' : '↧'
+                                }}</span>
+                        </th>
+                        <td cdk-cell *cdkCellDef="let row"> {{row.id}} </td>
+                        <td cdk-cell *cdkFooterCellDef="let row"> test </td>
+                    </ng-container>
+
+                    <!-- FullName Column -->
+                    <ng-container cdkColumnDef="fullName" (click)="adjustSort('recovery')">
+                        <th cdk-header-cell *cdkHeaderCellDef (click)="adjustSort('fullName')">
+                            Fullname <span *ngIf="sortKey$.value === 'fullName'">{{ sortDirection$.value === 'asc' ? '↥'
+                                : '↧'
+                                }}</span>
+                        </th>
+                        <td cdk-cell *cdkCellDef="let row"> {{row.fullName}} </td>
+                        <td cdk-cell *cdkFooterCellDef="let row"> test </td>
+                    </ng-container>
+
+
+
+                    <!-- Mobile Number Column -->
+                    <ng-container cdkColumnDef="mobileNumber">
+                        <th cdk-header-cell *cdkHeaderCellDef (click)="adjustSort('mobileNumber')">
+                            Mobile Number <span *ngIf="sortKey$.value === 'mobileNumber'">{{ sortDirection$.value ===
+                                'asc' ? '↥' : '↧'
+                                }}</span>
+                        </th>
+                        <td cdk-cell *cdkCellDef="let row">
+                            {{row.mobileNumber}}
+                        </td>
+                        <td cdk-cell *cdkFooterCellDef="let row"> test </td>
+                    </ng-container>
+
+                    <!-- Nationality Column -->
+                    <ng-container cdkColumnDef="nationality">
+                        <th cdk-header-cell *cdkHeaderCellDef (click)="adjustSort('nationality')">
+                            Nationality <span *ngIf="sortKey$.value === 'nationality'">{{ sortDirection$.value === 'asc'
+                                ? '↥' : '↧'
+                                }}</span>
+                        </th>
+                        <td cdk-cell *cdkCellDef="let row">
+                            {{row.nationality}}
+                        </td>
+                        <td cdk-cell *cdkFooterCellDef="let row"> test </td>
+                    </ng-container>
+
+                    <!-- Document Id Column -->
+                    <ng-container cdkColumnDef="documentId">
+                        <th cdk-header-cell *cdkHeaderCellDef (click)="adjustSort('documentId')">
+                            Document Id <span *ngIf="sortKey$.value === 'documentId'">{{ sortDirection$.value === 'asc'
+                                ? '↥' : '↧'
+                                }}</span>
+                        </th>
+                        <td cdk-cell *cdkCellDef="let row">
+                            {{row.documentId}}
+                        </td>
+                        <td cdk-cell *cdkFooterCellDef="let row"> test </td>
+                    </ng-container>
+
+                    <!-- Registration Date Column -->
+                    <ng-container cdkColumnDef="registrationDate">
+                        <th cdk-header-cell *cdkHeaderCellDef (click)="adjustSort('registrationDate')">
+                            Registration Date <span *ngIf="sortKey$.value === 'registrationDate'">{{
+                                sortDirection$.value === 'asc' ? '↥' : '↧'
+                                }}</span>
+                        </th>
+                        <td cdk-cell *cdkCellDef="let row">
+                            {{row.registrationDate | date}}
+                        </td>
+                        <td cdk-cell *cdkFooterCellDef="let row"> test </td>
+                    </ng-container>
+
+                    <!-- Status Column -->
+                    <ng-container cdkColumnDef="status">
+                        <th cdk-header-cell *cdkHeaderCellDef (click)="adjustSort('status')">
+                            Status <span *ngIf="sortKey$.value === 'status'">{{ sortDirection$.value === 'asc' ? '↥' :
+                                '↧'
+                                }}</span>
+                        </th>
+                        <td cdk-cell *cdkCellDef="let row">
+                            {{row.status}}
+                        </td>
+                        <td cdk-cell *cdkFooterCellDef="let row"> test </td>
+                    </ng-container>
+
+
+                    <!-- action Column -->
+                    <ng-container cdkColumnDef="action">
+                        <th cdk-header-cell *cdkHeaderCellDef></th>
+                        <td cdk-cell *cdkCellDef="let row">
+                            <button [routerLink]="['details/' + row.id]" class="btn btn-primary">View</button>
+                        </td>
+                        <td cdk-cell *cdkFooterCellDef="let row"> test </td>
+                    </ng-container>
+
+                    <!-- Header and Row Declarations -->
+                    <tr cdk-header-row *cdkHeaderRowDef="displayedColumns$.value"></tr>
+                    <tr cdk-row *cdkRowDef="let row; columns: displayedColumns$.value"></tr>
+
+                </table>
+
+                <div class="d-flex justify-content-center">
+                    <div class="">
+                        <ngb-pagination [collectionSize]="tableDataSource$.value.length" [pageSize]="pageSize$.value"
+                            [page]="currentPage$.value" (pageChange)="pageChange($event)">
+                        </ngb-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

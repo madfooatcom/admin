@@ -1,0 +1,56 @@
+<div class="row layout-top-spacing">
+
+    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+        <div class="widget-content widget-content-area br-6">
+            <div class="table-responsive mb-4 mt-2">
+                <table id="style-2_wrapper" class="table style-2 table-hover dataTable no-footer" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Ref Number</th>
+                            <th>type</th>
+                            <th>Date</th>
+                            <th>Transaction status</th>
+                            <th class="no-content"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let transaction of transactions">
+                            <td>#{{ transaction.id }}</td>
+                            <td>{{ transaction.type }}</td>
+                            <td>{{ transaction.date | date }}</td>
+                            <td>
+                                <div class="t-dot statusIcon d-inline-block mr-1" data-toggle="tooltip"
+                                    data-placement="top" title="" data-original-title="High" [ngClass]="transaction.status === 'Approved'? 'bg-success' :
+                                transaction.status === 'Refund'? 'bg-info' :
+                                transaction.status === 'Sattled'? 'bg-primary' :
+                                transaction.status === 'Pending'? 'bg-warning': 'bg-danger'">
+                                </div>
+                                {{ transaction.status }}
+                            </td>
+                            <td><svg routerLink="details/{{ transaction.id }}" xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                    class="feather feather-eye table-action">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class=" text-center">
+                <div class="paginating-container pagination-solid">
+                    <ul class="pagination">
+                        <li class="prev"><a href="javascript:void(0);">Prev</a></li>
+                        <li><a href="javascript:void(0);">1</a></li>
+                        <li class="active"><a href="javascript:void(0);">2</a></li>
+                        <li><a href="javascript:void(0);">3</a></li>
+                        <li class="next"><a href="javascript:void(0);">Next</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,123 @@
+<div class="row layout-spacing">
+  <div class="col-xl-12 col-md-12 col-sm-12 col-12 layout-top-spacing">
+    <div class="widget-content widget-content-area br-6">
+      <h4>Document types paramter</h4>
+      <div class="row">
+        <div class="col-xl-6 col-md-6 col-sm-6 col-6 layout-top-spacing">
+          <form class="form-vertical" [formGroup]='paramterForm' (ngSubmit)="onSubmit()">
+            <label class="control-label">Paramter Code: #31255</label>
+
+            <!-- Paramter Name -->
+            <div class="form-group mb-4">
+              <label class="control-label">Paramter Name:</label>
+              <input type="text" formControlName="paramter_name" class="form-control">
+              <div *ngIf="submitted && f.paramter_name.errors" class="invalid-feedback" style="display: block;">
+                <div *ngIf="f.paramter_name.errors.required">Paramter Name is required</div>
+              </div>
+            </div>
+
+            <!-- Paramter Types -->
+            <div class="form-group mb-4">
+              <label class="control-label">Paramter Type:</label>
+              <select size="1" id="row-1-office" (change)="changeParamterType($event)" class="form-control"
+                [ngModelOptions]="{standalone: true}" [(ngModel)]="paramter_type" >
+                <option value="number">
+                  number
+                </option>
+                <option value="text">
+                  text
+                </option>
+                <option value="Boolean">
+                  Boolean
+                </option>
+                <option value="list" selected="selected">
+                  list
+                </option>
+                <option value="HTML">
+                  HTML
+                </option>
+                <option value="password">
+                  Password
+                </option>
+              </select>
+            </div>
+
+            <!-- Paramter Validations -->
+            <div>
+
+              <!-- list -->
+              <div class="mb-4" *ngIf="paramter_type == 'list'">
+                <app-list-paramter></app-list-paramter>
+              </div>
+
+              <div *ngIf="paramter_type == 'text' || paramter_type ==  'number' || paramter_type ==  'password'">
+                <div class="d-flex justify-content-between mb-2">
+                  <label for="">Validations:</label>
+                </div>
+                <!-- Minimum Length -->
+                <div class="form-group mb-4">
+                  <label class="control-label">Minimum Length:</label>
+                  <input type="text" formControlName="minLength" class="form-control">
+                  <div *ngIf="submitted && f.minLength.errors" class="invalid-feedback" style="display: block;">
+                    <div *ngIf="f.minLength.errors.required">Paramter Name is required</div>
+                  </div>
+                </div>
+
+                <!-- Maximum Length -->
+                <div class="form-group mb-4">
+                  <label class="control-label">Maximum Length:</label>
+                  <input type="text" formControlName="maxLength" class="form-control" >
+                  <div *ngIf="submitted && f.maxLength.errors" class="invalid-feedback" style="display: block;">
+                    <div *ngIf="f.maxLength.errors.required">Paramter Name is required</div>
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="paramter_type ==  'password'">
+                <!--  Capital letter -->
+                <div class="form-group mb-4">
+                  <label class="control-label">Capital letter:</label>
+                  <input type="text" formControlName="capitalLetter" class="form-control" >
+                  <div *ngIf="submitted && f.capitalLetter.errors" class="invalid-feedback" style="display: block;">
+                    <div *ngIf="f.capitalLetter.errors.required">Paramter Name is required</div>
+                  </div>
+                </div>
+
+                <!--  Small letter -->
+                <div class="form-group mb-4">
+                  <label class="control-label">Small letter:</label>
+                  <input type="text" formControlName="smallLetter" class="form-control" >
+                  <div *ngIf="submitted && f.smallLetter.errors" class="invalid-feedback" style="display: block;">
+                    <div *ngIf="f.smallLetter.errors.required">Paramter Name is required</div>
+                  </div>
+                </div>
+
+                <!--  Number character -->
+                <div class="form-group mb-4">
+                  <label class="control-label">Number character:</label>
+                  <input type="text" formControlName="numbers" class="form-control" >
+                  <div *ngIf="submitted && f.numbers.errors" class="invalid-feedback" style="display: block;">
+                    <div *ngIf="f.numbers.errors.required">Paramter Name is required</div>
+                  </div>
+                </div>
+
+                <!--  special character -->
+                <div class="form-group mb-4">
+                  <label class="control-label">Special character:</label>
+                  <input type="text" formControlName="specialCharacter" class="form-control" >
+                  <div *ngIf="submitted && f.specialCharacter.errors" class="invalid-feedback" style="display: block;">
+                    <div *ngIf="f.specialCharacter.errors.required">Paramter Name is required</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <input type="submit" value="Save" class="btn btn-primary mt-3">
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
