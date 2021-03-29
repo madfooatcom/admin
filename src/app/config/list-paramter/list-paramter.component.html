@@ -41,18 +41,28 @@
               <td>
                 <div class="form-group ">
                   <input type="text" formControlName="listItemKey" class="form-control" >
+                  <div *ngIf="submitted && f.listItemKey.errors" class="invalid-feedback" style="display: block;">
+                    <div *ngIf="f.listItemKey.errors.required">Please Enter the key</div>
+                    <div *ngIf="f.listItemKey.errors.pattern">The key must be a number</div>
+                  </div>
                 </div>
               </td>
               <td>
                 <div class="form-group">
-                  <input type="text" formControlName="listItemEnValue" class="form-control"
-                   >
+                  <input type="text" formControlName="listItemEnValue" class="form-control">
+                  <div *ngIf="submitted && f.listItemEnValue.errors" class="invalid-feedback" style="display: block;">
+                    <div *ngIf="f.listItemEnValue.errors.required">Please Enter the english value</div>
+                    <div *ngIf="f.listItemEnValue.errors.pattern">English value must be in english</div>
+                  </div>
                 </div>
               </td>
               <td>
                 <div class="form-group">
-                  <input type="text" formControlName="listItemArValue" class="form-control"
-                   >
+                  <input type="text" formControlName="listItemArValue" class="form-control">
+                  <div *ngIf="submitted && f.listItemArValue.errors" class="invalid-feedback" style="display: block;">
+                    <div *ngIf="f.listItemArValue.errors.required">Please Enter the arabic value</div>
+                    <div *ngIf="f.listItemArValue.errors.pattern">Arabic value must be in arabic</div>
+                  </div>
                 </div>
               </td>
               <td class="text-center">

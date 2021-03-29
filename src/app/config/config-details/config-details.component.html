@@ -47,7 +47,10 @@
 
               <!-- list -->
               <div class="mb-4" *ngIf="paramter_type == 'list'">
-                <app-list-paramter></app-list-paramter>
+                <app-list-paramter (onAddListItem)="updateListItems($event)"></app-list-paramter>
+                <div *ngIf="submitted && listItemsNeeded" class="invalid-feedback" style="display: block;">
+                  <div>Please add at least two list items</div>
+                </div>
               </div>
 
               <div *ngIf="paramter_type == 'text' || paramter_type ==  'number' || paramter_type ==  'password'">

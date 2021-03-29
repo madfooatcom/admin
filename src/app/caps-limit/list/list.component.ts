@@ -13,23 +13,28 @@ export class ListComponent implements OnInit {
 
   transactions: TransactionCapLimit[] = [
     {
-      code: 1,
-      transactionType: 'Cash in',
+      code: 4322,
+      transactionType: 'Agent Cash in',
       appliedOn: 'Both'
     },
     {
-      code: 1,
-      transactionType: 'Cash in',
+      code: 2455,
+      transactionType: 'efAWATEERcom Cash in',
+      appliedOn: 'Citizen'
+    },
+    {
+      code: 4333,
+      transactionType: 'ATM Cash in',
+      appliedOn: 'Non-citizen'
+    },
+    {
+      code: 3223,
+      transactionType: 'Agent Cash out',
       appliedOn: 'Both'
     },
     {
-      code: 1,
-      transactionType: 'Cash in',
-      appliedOn: 'Both'
-    },
-    {
-      code: 1,
-      transactionType: 'Cash in',
+      code: 3203,
+      transactionType: 'ATM cash out',
       appliedOn: 'Both'
     },
   ]
@@ -67,4 +72,7 @@ export class ListComponent implements OnInit {
 
   }
 
+  deleteItem(){
+    console.log('deleting');
+  }
 }

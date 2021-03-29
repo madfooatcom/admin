@@ -1,44 +1,61 @@
 <div class="row layout-spacing">
   <div class="col-xl-12 col-md-12 col-sm-12 col-12 layout-top-spacing">
     <div class="widget-content widget-content-area br-6">
-      <h4>Add Caps Limit</h4>
+      <h4>{{ pageMood | titlecase}} Caps Limit</h4>
       <div class="row">
         <div class="col-xl-6 col-md-6 col-sm-6 col-6 layout-top-spacing">
           <form class="form-vertical" [formGroup]="capsLimitForm" (ngSubmit)="onSubmit()">
 
             <!-- appliedOn -->
-            <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
-              <label class="btn btn-info active">
-                <input type="checkbox" name="appliedOn" value="citizen" checked> citizen
-              </label>
-              <label class="btn btn-info">
-                <input type="checkbox" name="appliedOn" value="nonCitizen"> Non-Citizen
-              </label>
+            <div class="mb-4">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-info"
+                  [ngClass]="pageMood == 'edit'&& capsLimitsObj?.appliedOnCitizen? 'active' : ''"
+                  (click)="citizen = !citizen">
+                  <input type="checkbox" name="appliedOnCitizen" value="citizen"> citizen
+                </label>
+                <label class="btn btn-info" (click)="nonCitizen = !nonCitizen"
+                  [ngClass]="pageMood == 'edit' && capsLimitsObj?.appliedOnNonCitizen ?'active' : ''">
+                  <input type="checkbox" name="appliedOnNonCitizen" value="nonCitizen"> Non-Citizen
+                </label>
+              </div>
+              <div *ngIf="submitted && !citizen && !nonCitizen" class="invalid-feedback" style="display: block;">
+                <div>choose one at least</div>
+              </div>
             </div>
 
             <!-- Paramter Types -->
             <div class="form-group mb-4">
-              <label class="control-label">Paramter Type:</label>
-              <select size="1" id="row-1-office" class="form-control" formControlName="transactionType">
-                <option value="type" *ngFor="let type of transactionTypes">
+              <label class="control-label">Transaction Type:</label>
+              <select size="1" id="row-1-office" class="form-control" formControlName="transactionType"
+                [ngModel]="pageMood == 'edit'?capsLimitsObj.transactionType: ''">
+                <option value="" disabled [selected]="pageMood == 'add'">Choose Transaction Type..</option>
+                <option value="type" *ngFor="let type of transactionTypes"
+                  [selected]="pageMood == 'edit' && capsLimitsObj.transactionType == type">
                   {{type}}
                 </option>
               </select>
+              <div *ngIf="submitted && f.transactionType.errors" class="invalid-feedback" style="display: block;">
+                <div *ngIf="f.transactionType.errors.required">Please choose transaction type</div>
+              </div>
             </div>
 
             <!-- Minimum amount -->
             <div class="form-group mb-4">
               <label class="control-label">Minimum Amount Per Transaction:</label>
-              <input type="text" formControlName="minAmount" class="form-control">
+              <input type="text" formControlName="minAmount" class="form-control"
+                [ngModel]="pageMood == 'edit'?capsLimitsObj.minAmount: null">
               <div *ngIf="submitted && f.minAmount.errors" class="invalid-feedback" style="display: block;">
                 <div *ngIf="f.minAmount.errors.required">Please Enter the minimum amount</div>
+                <div *ngIf="f.minAmount.errors.pattern">Minimum Amount must be a decimal</div>
               </div>
             </div>
 
             <!-- Maximum amount -->
             <div class="form-group mb-4">
               <label class="control-label">Maximum Amount Per Transaction:</label>
-              <input type="text" formControlName="maxAmount" class="form-control">
+              <input type="text" formControlName="maxAmount" class="form-control"
+                [ngModel]="pageMood == 'edit'?capsLimitsObj.maxAmount: null">
               <div *ngIf="submitted && f.maxAmount.errors" class="invalid-feedback" style="display: block;">
                 <div *ngIf="f.maxAmount.errors.required">Please Enter the maximum amount</div>
               </div>
@@ -47,7 +64,8 @@
             <!-- Daily limit -->
             <div class="form-group mb-4">
               <label class="control-label">Daily Limit:</label>
-              <input type="text" formControlName="dailyLimit" class="form-control">
+              <input type="text" formControlName="dailyLimit" class="form-control"
+                [ngModel]="pageMood == 'edit'?capsLimitsObj.dailyLimit: null">
               <div *ngIf="submitted && f.dailyLimit.errors" class="invalid-feedback" style="display: block;">
                 <div *ngIf="f.dailyLimit.errors.required">Please Enter the daily limit</div>
               </div>
@@ -56,7 +74,8 @@
             <!-- Weekly limit -->
             <div class="form-group mb-4">
               <label class="control-label">Weekly Limit:</label>
-              <input type="text" formControlName="weeklyLimit" class="form-control">
+              <input type="text" formControlName="weeklyLimit" class="form-control"
+                [ngModel]="pageMood == 'edit'?capsLimitsObj.weeklyLimit: null">
               <div *ngIf="submitted && f.weeklyLimit.errors" class="invalid-feedback" style="display: block;">
                 <div *ngIf="f.weeklyLimit.errors.required">Please Enter the weekly limit</div>
               </div>
@@ -65,14 +84,15 @@
             <!-- Monthly limit -->
             <div class="form-group mb-4">
               <label class="control-label">Monthly Limit:</label>
-              <input type="text" formControlName="monthlyLimit" class="form-control">
+              <input type="text" formControlName="monthlyLimit" class="form-control"
+                [ngModel]="pageMood == 'edit'?capsLimitsObj.monthlyLimit: null">
               <div *ngIf="submitted && f.monthlyLimit.errors" class="invalid-feedback" style="display: block;">
                 <div *ngIf="f.monthlyLimit.errors.required">Please Enter the monthly limit</div>
               </div>
             </div>
 
             <div class="d-flex justify-content-end">
-              <input type="submit" value="Save" class="btn btn-primary mt-3 mr-2">
+              <input type="submit" [value]="pageMood == 'edit'?'Update': 'Save'" class="btn btn-primary mt-3 mr-2">
               <input type="button" value="Cancel" class="btn btn-outline-dark mt-3">
             </div>
           </form>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -8,7 +8,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ListParamterComponent implements OnInit {
 
+  @Output() onAddListItem = new EventEmitter<any>();
   listForm: FormGroup;
+  submitted =false;
   listItems=[];
   constructor(private formBuilder: FormBuilder) { }
 
@@ -18,21 +20,25 @@ export class ListParamterComponent implements OnInit {
   
   initListForm() {
     this.listForm = this.formBuilder.group({
-      listItemKey: ['', Validators.required],
-      listItemArValue: ['', Validators.required],
-      listItemEnValue: ['', Validators.required],
+      listItemKey: ['', [Validators.required, Validators.pattern(/^[0-9]*$/)]],
+      listItemArValue: ['', [Validators.required, Validators.pattern(/[\u0621-\u064A]+/)]],
+      listItemEnValue: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
     });
   }
 
+  get f() { return this.listForm.controls; }
+
   addListItem() {
+    this.submitted = true;
     if(this.listForm.valid){
       this.listItems.push({
         key: this.listForm.controls['listItemKey'].value,
         enValue: this.listForm.controls['listItemEnValue'].value,
         arValue: this.listForm.controls['listItemArValue'].value,
       })
-    }
+    }else return
     this.listForm.reset();
+    this.onAddListItem.emit(this.listItems);
   }
 
   removeItemList(el){
@@ -41,7 +47,7 @@ export class ListParamterComponent implements OnInit {
         this.listItems.splice(index, 1);
     }      
     console.log(this.listItems);
-    
+    this.onAddListItem.emit(this.listItems);
   }
 
 }

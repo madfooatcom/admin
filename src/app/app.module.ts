@@ -5,7 +5,7 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AccountModule } from './account/account.module';
 import { ConfigModule } from './config/config.module';
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -16,6 +16,8 @@ import { TransactionModule } from './transaction/transaction.module';
 import { UserModule } from './user/user.module';
 import { WalletModule } from './wallet/wallet.module';
 import { LayoutComponent } from './shared/components/layout/layout.component';
+import { CapsLimitModule } from './caps-limit/caps-limit.module';
+import { AuthInterceptor } from './shared/services/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -34,9 +36,16 @@ import { LayoutComponent } from './shared/components/layout/layout.component';
     NotificationModule,
     TransactionModule,
     UserModule,
-    WalletModule
+    WalletModule,
+    CapsLimitModule
   ],
-  providers: [],
+  providers: [
+  //   {
+  //   provide: HTTP_INTERCEPTORS, 
+  //   useClass: AuthInterceptor, 
+  //   multi: true
+  // }
+],
   bootstrap: [AppComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })

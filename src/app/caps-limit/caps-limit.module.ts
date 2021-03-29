@@ -13,10 +13,10 @@ const routes: Routes = [{
   path: 'details/:id', component: DetailsComponent
 },
 {
-  path: 'add', component: AddEditCapsLimitComponent
+  path: 'add', component: AddEditCapsLimitComponent, data :{ pageMood:'add'}
 },
 {
-  path: 'edit/:id', component: AddEditCapsLimitComponent
+  path: 'edit/:id', component: AddEditCapsLimitComponent, data :{ pageMood:'edit'}
 }]
 
 @NgModule({
