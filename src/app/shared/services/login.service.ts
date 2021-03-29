@@ -13,8 +13,9 @@ export class LoginService {
   login() {
     let uri = '/login';
     let body = {
-      "phone": "114455555",
-      "password": "nour",
+      "phone": "114455554442",
+      "password": "123456",
+      "countryCode": "+20",
       "fingerPrint": 12345678912345,
       "uHeader": "{'browser':{'name':'Chrome','version':'87.0.4280.141','major':'87'},'os':'Linux','engine':'WebKit','CPU':'amd64'}"
     }
